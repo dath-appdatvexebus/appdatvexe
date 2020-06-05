@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Str;
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
+
 
 return [
 
@@ -46,17 +53,17 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'us-cdbr-east-05.cleardb.net'),
+            'host' =>  $host, 
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'heroku_9a3fc1b2fc2f89f'),
-            'username' => env('DB_USERNAME', 'b5a52638e2389d'),
-            'password' => env('DB_PASSWORD', '06a865d8'),
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
-            'strict' => false,
+            'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
