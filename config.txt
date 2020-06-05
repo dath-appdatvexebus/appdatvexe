@@ -1,0 +1,5 @@
+CLEARDB_DATABASE_URL: mysql://b5a52638e2389d:06a865d8@us-cdbr-east-05.cleardb.net/heroku_9a3fc1b2fc2f89f?reconnect=true
+DB name: 	datn 
+Host: 		127.0.0.1 
+Password: 	06a865d8 
+User: 		root 
