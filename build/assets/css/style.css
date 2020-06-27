@@ -1,0 +1,444 @@
+/* YOUR CUSTOM STYLES */
+
+.section {
+  height: 100vh;
+}
+
+.section .section-center {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#booking {
+  font-family: "PT Sans", sans-serif;
+  background-image: url("../img/background.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.booking-form {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.booking-form form {
+  margin-bottom: 0px;
+}
+
+.booking-form input[type="text"],
+.booking-form input[type="date"] {
+  color: white;
+}
+
+#booking .col-md-4 .form-group {
+  padding-top: 26px;
+}
+#booking .col-md-4 .form-group select {
+  color: #000;
+  padding-left: 5px;
+  background: #fff;
+  font-weight: 600;
+}
+/* CSS phần chọn ghế */
+section#chonghe {
+  margin-top: 100px;
+}
+
+.seat {
+  transition: 0.4s all;
+}
+
+.booked {
+  color: #968684;
+}
+
+.selecting {
+  color: #ff9e00;
+}
+
+#chonghe i.fa {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.booked i.fa {
+  cursor: none !important;
+}
+/* CSS loading data */
+.loader {
+  width: 50px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#ld2 {
+  display: flex;
+  flex-direction: row;
+}
+#ld2 div {
+  height: 20px;
+  width: 5px;
+  background: #fe4a49;
+  margin: 3px;
+  border-radius: 25px;
+}
+#ld2 div:nth-child(1) {
+  animation: ld2 1s ease-in-out infinite 0s;
+}
+#ld2 div:nth-child(2) {
+  animation: ld2 1s ease-in-out infinite 0.1s;
+}
+#ld2 div:nth-child(3) {
+  animation: ld2 1s ease-in-out infinite 0.2s;
+}
+#ld2 div:nth-child(4) {
+  animation: ld2 1s ease-in-out infinite 0.3s;
+}
+#ld2 div:nth-child(5) {
+  animation: ld2 1s ease-in-out infinite 0.4s;
+}
+#ld2 div:nth-child(6) {
+  animation: ld2 1s ease-in-out infinite 0.5s;
+}
+#ld2 div:nth-child(7) {
+  animation: ld2 1s ease-in-out infinite 0.6s;
+}
+
+@keyframes ld2 {
+  0% {
+    transform: scaleY(1);
+    background: #fed766;
+  }
+  25% {
+    background: #009fb7;
+  }
+  50% {
+    transform: scaleY(2);
+    background: #59cd90;
+  }
+  75% {
+    background: #fe4a49;
+  }
+  100% {
+    transform: scaleY(1);
+    background: #d91e36;
+  }
+}
+/* css stepper */
+.md-stepper-horizontal {
+  display: table;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0 3px 8px -6px rgba(0, 0, 0, 0.5);
+  margin-bottom: 48px;
+  border-radius: 8px;
+}
+.md-stepper-horizontal .md-step {
+  display: table-cell;
+  position: relative;
+  padding: 24px;
+}
+.md-stepper-horizontal .md-step:hover,
+.md-stepper-horizontal .md-step:active {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.md-stepper-horizontal .md-step:active {
+  border-radius: 15% / 75%;
+}
+.md-stepper-horizontal .md-step:first-child:active {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.md-stepper-horizontal .md-step:last-child:active {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.md-stepper-horizontal .md-step:hover .md-step-circle {
+  background-color: #757575;
+}
+.md-stepper-horizontal .md-step:first-child .md-step-bar-left,
+.md-stepper-horizontal .md-step:last-child .md-step-bar-right {
+  display: none;
+}
+.md-stepper-horizontal .md-step .md-step-circle {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  background-color: #999999;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.md-stepper-horizontal.green .md-step.active .md-step-circle {
+  background-color: #00ae4d;
+}
+.md-stepper-horizontal.orange .md-step.active .md-step-circle {
+  background-color: #f96302;
+}
+.md-stepper-horizontal .md-step.active .md-step-circle {
+  background-color: rgb(33, 150, 243);
+}
+.md-stepper-horizontal .md-step.done .md-step-circle:before {
+  font-family: "FontAwesome";
+  font-weight: 100;
+  content: "\f00c";
+}
+.md-stepper-horizontal .md-step.done .md-step-circle *,
+.md-stepper-horizontal .md-step.editable .md-step-circle * {
+  display: none;
+}
+.md-stepper-horizontal .md-step.editable .md-step-circle {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.md-stepper-horizontal .md-step.editable .md-step-circle:before {
+  font-family: "FontAwesome";
+  font-weight: 100;
+  content: "\f040";
+}
+.md-stepper-horizontal .md-step .md-step-title {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.md-stepper-horizontal .md-step .md-step-title,
+.md-stepper-horizontal .md-step .md-step-optional {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.26);
+}
+.md-stepper-horizontal .md-step.active .md-step-title {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.87);
+}
+.md-stepper-horizontal .md-step.active.done .md-step-title,
+.md-stepper-horizontal .md-step.active.editable .md-step-title {
+  font-weight: 600;
+}
+.md-stepper-horizontal .md-step .md-step-optional {
+  font-size: 12px;
+}
+.md-stepper-horizontal .md-step.active .md-step-optional {
+  color: rgba(0, 0, 0, 0.54);
+}
+.md-stepper-horizontal .md-step .md-step-bar-left,
+.md-stepper-horizontal .md-step .md-step-bar-right {
+  position: absolute;
+  top: 36px;
+  height: 1px;
+  border-top: 1px solid #dddddd;
+}
+.md-stepper-horizontal .md-step .md-step-bar-right {
+  right: 0;
+  left: 50%;
+  margin-left: 20px;
+}
+.md-stepper-horizontal .md-step .md-step-bar-left {
+  left: 0;
+  right: 50%;
+  margin-right: 20px;
+}
+
+.md-stepper-horizontal .md-step .md-step-circle .material-icons {
+  line-height: inherit;
+}
+
+#chonghe td span.material-icons {
+  cursor: pointer;
+}
+#chonghe td.reserved span.material-icons {
+  color: rgb(255, 158, 0);
+}
+#chonghe td.booked span.material-icons {
+  color: #eaeaea;
+}
+/* css banner trang chu */
+.cloud {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: url(../img/cloud.png);
+  animation: cloudy 60s linear infinite;
+}
+
+@-webkit-keyframes cloudy {
+  0% {
+    background-position: 0px;
+  }
+  100% {
+    background-position: -5440px;
+  }
+}
+/*css for loader page*/
+#root:not(:empty) + .triple-spinner {
+  display: none;
+}
+
+.triple-spinner {
+  width: 126px;
+  height: 126px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top: 4px solid #f15e41;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: calc(50% - 84px);
+  left: calc(50% - 84px);
+  transform: (-50%, -50%);
+}
+
+.triple-spinner::before,
+.triple-spinner::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 4px solid transparent;
+}
+.triple-spinner::before {
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-top-color: #bad375;
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3.5s linear infinite;
+}
+.triple-spinner::after {
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-top-color: #26a9e0;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.75s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* trade css */
+
+section#trade .card img.img-fluid.rounded {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 90%;
+  margin-left: 6px;
+}
+
+section#trade p .fa {
+  display: inline-block;
+  width: 25px;
+  color: #fff;
+  height: 25px;
+  text-align: center;
+  background: #1bbc9c;
+  line-height: 25px;
+  border-radius: 2px;
+  font-size: 13px;
+}
+
+section#trade .card .col-md-3 .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
+
+section#trade .col-md-8 .card:hover {
+  box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2),
+    0 13px 24px -11px rgba(233, 30, 99, 0.6);
+  transition: 0.5s all;
+}
+
+section#trade .modal-content .card {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 16px;
+}
+
+section#trade .modal-content .card .btn.btn-block.btn-info {
+  font-size: 16px;
+}
+
+section#trade .card {
+  text-align: left !important;
+}
+/* lien he component css*/
+#lienhe {
+  margin-top: 200px;
+  margin-bottom: 100px;
+  text-align: left !important;
+}
+
+#lienhe .contact-content {
+  padding-top: 48px;
+  padding-bottom: 32px;
+}
+
+#lienhe .contact-content .info.info-horizontal {
+  padding-top: 0px;
+}
+ul.listCard {
+  list-style: none;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 400;
+}
+
+li.itemCard {
+  padding-top: 10px;
+}
+
+.imgRounded {
+  width: 90%!important;
+  height: 80%!important;
+}
+label {
+  color: #000;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.non-toggle {
+  display: none;
+}
