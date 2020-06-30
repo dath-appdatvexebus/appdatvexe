@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: Colors.primary,
     marginVertical: 20,
-    fontFamily: "roboto-bold",
   },
 });
 

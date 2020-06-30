@@ -1,11 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+// import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../../../constants/colors";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+
 const Ticket = (props) => {
   return (
     <View style={{ ...styles.items, ...props.style }}>
@@ -23,11 +24,11 @@ const Ticket = (props) => {
         <Text style={{ ...styles.grid, ...styles.source }}>
           {props.item.source}
         </Text>
-        <FontAwesome
+        {/* <FontAwesome
           style={{ ...styles.grid, ...styles.arrowIcon }}
           name="long-arrow-right"
           size={24}
-        />
+        /> */}
         <Text style={{ ...styles.grid, ...styles.destination }}>
           {props.item.destination}
         </Text>
@@ -73,21 +74,17 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: wp("6%"),
-    fontFamily: "roboto-bold",
     color: Colors.dark,
   },
   owner: {
     fontSize: wp("3%"),
-    fontFamily: "roboto-light",
   },
   time: {
     fontSize: wp("5%"),
-    fontFamily: "roboto-light",
   },
   date: {
     fontSize: wp("3%"),
     textAlign: "right",
-    fontFamily: "roboto",
   },
   location: {
     flexDirection: "row",
@@ -125,12 +122,10 @@ const styles = StyleSheet.create({
   },
   midway: {
     color: Colors.ltGray,
-    fontFamily: "roboto-light",
     flexWrap: "wrap",
   },
   midwayStation: {
     color: Colors.ltGray,
-    fontFamily: "roboto",
   },
 });
 

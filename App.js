@@ -1,68 +1,68 @@
-import React, { useState } from "react";
-import "react-native-gesture-handler"
-import { StyleSheet, Text, View, AsyncStorage } from "react-native";
-import { enableScreens } from "react-native-screens";
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import ReduxThunk from "redux-thunk"
-import Navigator from "./router/Navigator";
+import React from 'react';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { Provider, useSelector, useDispatch } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import createSagaMiddleware from "redux-saga";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { AsyncStorage } from 'react-native';
 
-import authReducer from "./store/reducers/auth";
-import detailsReducer from "./store/reducers/details";
+import rootSaga from "./Store/RootSaga";
+import combinedReducers from "./Store/rootReducers";
+import { AuthStackScreen } from "./Navigator/AuthStack";
+import { TabNavigatorScreen } from "./Navigator/HomeStack";
+import * as  Screens from "./Screens";
 
-import * as Font from "expo-font";
-import { AppLoading } from "expo";
+const sagaMiddleware = createSagaMiddleware();
 
-enableScreens();
-const rootReducer = combineReducers({
-  auth: authReducer,
-  details: detailsReducer,
-});
+const composeEnhancers = process.env.NODE_ENV === 'production'
+  ? compose
+  : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
 const store = createStore(
-  rootReducer, applyMiddleware(ReduxThunk)
+  combinedReducers,
+  composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-const fetchFonts = () => {
-  return Font.loadAsync({
-    bebas: require("./assets/fonts/BebasNeue-Regular.ttf"),
-    "roboto-black": require("./assets/fonts/Roboto-Black.ttf"),
-    "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf"),
-    "roboto-light": require("./assets/fonts/Roboto-Light.ttf"),
-    "roboto-italic": require("./assets/fonts/Roboto-Italic.ttf"),
-    roboto: require("./assets/fonts/Roboto-Regular.ttf"),
-  });
-};
+sagaMiddleware.run(rootSaga);
 
-export default function App() {
-  const [status, setStatus] = useState(false);
-  const [dataLoaded, setdataLoaded] = useState(false);
-  const toggleLogin = (val) => {
-    setStatus(val);
-  };
+const Drawer = createDrawerNavigator();
 
-  if (!dataLoaded) {
-    console.log("loading..");
-    return (
-      <AppLoading
-        startAsync={fetchFonts}
-        onFinish={() => {
-          setdataLoaded(true);
-        }}
-        onError={(error) => {
-          console.log(error);
-        }}
-      />
-    );
-  }
+const DrawerScreen = () => (
+  <Drawer.Navigator drawerPosition="right" drawerType="front" >
+    <Drawer.Screen
+      name="home"
+      component={TabNavigatorScreen}
+      options={{ title: "HOME" }}
+    />
+    <Drawer.Screen name="userinfo" component={Screens.UserInfo} options={{ title: "Thông tin" }} />
+  </Drawer.Navigator>
+);
+
+const App = () => {
   return (
     <Provider store={store}>
-      <Navigator />
+      <Test />
     </Provider>
   );
+};
+
+export const Test = () => {
+  const { isLoged } = useSelector(state => state.LoginReducer)
+  const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    AsyncStorage.getItem("userInfo").then((rsp) => {
+      console.log(rsp)
+      if (rsp)
+        dispatch({ type: "LOGIN_SUCCESS", isLoged: true })
+      
+    })
+  }, [])
+  return <NavigationContainer>
+    {isLoged ? <DrawerScreen />
+      : <AuthStackScreen />}
+  </NavigationContainer>
 }
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-});
+export default App;

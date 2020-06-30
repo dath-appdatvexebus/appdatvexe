@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   image: {
     width: wp("100%"),
-    height: '30%',
+    height: '20%',
     resizeMode: 'cover',
     marginVertical: hp("2"),
   },
@@ -22,7 +22,6 @@ export default StyleSheet.create({
   },
   title: {
     fontSize: 34,
-    fontFamily: "bebas",
   },
   inputContainer: {
     backgroundColor: '#f9f9f9',

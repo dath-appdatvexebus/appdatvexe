@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     color: Colors.light,
     textAlign: "center",
     fontSize: 22,
-    fontFamily: "bebas",
   }
 });
 

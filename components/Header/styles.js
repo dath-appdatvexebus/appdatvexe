@@ -12,6 +12,5 @@ export default StyleSheet.create({
     headerTitle: {
         color: Colors.light,
         fontSize: 22,
-        fontFamily: 'bebas'
     }
 })

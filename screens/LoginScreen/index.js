@@ -1,43 +1,29 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import {
   Image,
   View,
   Text,
-  TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
   Alert,
   SafeAreaView,
   ScrollView,
+  AsyncStorage,
 } from "react-native";
-import { useDispatch } from "react-redux";
-import { auth } from "../../store/actions/auth";
-import { LOGIN, REGISTER } from "../../store/actions/auth";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+
 import styles from "./styles";
 import Card from "../../components/UI/Card";
 import Input from "../../components/UI/Input";
 import Btn from "../../components/UI/Btn";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import { TouchableNativeFeedback } from "react-native-gesture-handler";
+import { LOGIN } from "./saga/reducer";
 
-const formReducer = (state, { type, key, payload }) => {
-  switch (type) {
-    case "INPUT":
-      if (key === "email") return { ...state, email: payload };
-      else return { ...state, password: payload };
-    default:
-      return state;
-  }
-};
-
-const LoginScreen = (props) => {
+export const LoginScreen = ({ navigation }) => {
   const dispatch = useDispatch();
+  const [screen, setScreen] = useState(true);
   const [formState, setFormState] = React.useState({
     username: "", password: "", name: "", phone_number: ""
   })
-  const [screen, setScreen] = useState(true);
+  const { isLoged } = useSelector(state => state.LoginReducer)
   const errorAlert = (error) => {
     Alert.alert("Error", error, [{ text: "OK" }], { cancelable: false });
   };
@@ -46,27 +32,13 @@ const LoginScreen = (props) => {
     setFormState({ ...formState, [key]: text })
   };
 
-  const authHandler = async (type) => {
-    console.log("calling", type);
-    if (formState.email && formState.password) {
-      let event;
-      if (type === LOGIN) event = LOGIN;
-      else event = REGISTER;
-
-      const error = await dispatch(
-        auth(event, formState)
-      );
-      if (error) {
-        errorAlert(error);
-      }
-    } else {
-      errorAlert("Vui lòng điền vào chỗ trống");
-    }
+  const authHandler = (type) => {
+    dispatch({ type: LOGIN, formState })
   };
 
   return (
     <SafeAreaView>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 0.5 }}>
         <View style={styles.screen}>
           <Image
             style={styles.image}
@@ -108,7 +80,7 @@ const LoginScreen = (props) => {
               <Input
                 onChangeText={(text) => inputHandler({ text, key: "password" })}
                 value={formState.password}
-                placeholder={"Mật khẩu"}
+                placeholder={"Password"}
                 style={styles.textInput}
                 secureTextEntry={true}
                 returnKeyType="done"
@@ -118,19 +90,19 @@ const LoginScreen = (props) => {
                   <Btn
                     style={styles.btn}
                     onPress={() => {
-                      authHandler(LOGIN);
+                      authHandler("LOGIN");
                     }}
                   >
-                    Đăng nhập
+                    LOGIN
                   </Btn>
                 ) : (
                     <Btn
                       style={styles.btn}
                       onPress={() => {
-                        authHandler(REGISTER);
+                        authHandler("REGISTER");
                       }}
                     >
-                      Đăng kí
+                      REGISTER
                     </Btn>
                   )}
               </View>
@@ -144,10 +116,10 @@ const LoginScreen = (props) => {
                 }}
               >
                 <Text style={styles.tag}>
-                  {screen ? "Chưa có tài khoản?" : "Bạn muốn đăng kí?"}
+                  {screen ? "Need an account?" : "Have an account?"}
                 </Text>
                 <Text style={{ ...styles.tag, ...styles.tagSwitcher }}>
-                  {screen ? "Đăng kí ngay" : "Đăng nhập ngay"}
+                  {screen ? "Register Here" : "Login Here"}
                 </Text>
               </TouchableOpacity>
             </Card>
@@ -158,4 +130,3 @@ const LoginScreen = (props) => {
   );
 };
 
-export default LoginScreen;
